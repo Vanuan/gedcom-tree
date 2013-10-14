@@ -1,0 +1,12 @@
+{
+  "name": "gedcom-tree",
+  "version": "0.0.1",
+  "devDependencies": {
+    "tape": "~1.1.0",
+    "browserify": "~2.34.0"
+  },
+  "testling": {
+    "files": "test/*.js",
+    "browsers": [ "ie8", "ie9", "ff/13", "chrome/20" ]
+  }
+}
