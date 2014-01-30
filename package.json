@@ -6,8 +6,9 @@
     "brfs": "~0.0.9",
     "browserify": "~2.34.0"
   },
+  "browserify": { "transform": ["brfs"] },
   "testling": {
     "files": "test/*.js",
-    "browsers": [ "ie8", "ie9", "ff/13", "chrome/20" ]
+    "browsers": [ "ie9", "ff/13", "chrome/20" ]
   }
 }
