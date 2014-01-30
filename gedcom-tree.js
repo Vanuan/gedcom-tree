@@ -68,7 +68,7 @@ var GedcomTree = {
         LF = '\n'.charCodeAt(0);
     for (var i = 0; i < arrayBuffer.byteLength; ++i) {
       if (view[i] == LF || view[i] == CR) {
-        curLine = String.fromCharCode.apply(null, view.slice(lineOffset, i));
+        curLine = String.fromCharCode.apply(null, view.subarray(lineOffset, i));
         onLineCallback(curLine);
         if (view[i + 1] == LF || view[i + 1] == CR) {
           i += 2;

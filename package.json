@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "devDependencies": {
     "tape": "~1.1.0",
+    "brfs": "~0.0.9",
     "browserify": "~2.34.0"
   },
   "testling": {
