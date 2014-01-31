@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" ng-app="gedcomTreeApp">
+<head>
+  <meta charset="utf-8">
+  <title>Gedcom Tree</title>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+  <link href="cover.css" rel="stylesheet">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.10/angular.js"></script>
+  <script src="build/gedcom-tree.js"></script>
+  <script src="controllers.js"></script>
+</head>
+<body ng-controller="GedcomTreeCtrl">
+
+    <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="cover-container">
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">GedcomTree</h3>
+<!--
+              <ul class="nav masthead-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+-->
+            </div>
+          </div>
+          <div class="inner cover">&nbsp;
+          </div>
+          <div class="mastfoot">
+            <div class="inner">
+                  <p>Файл: {{gedcom.filename}}</p>
+                  <p>Версия: {{gedcom.version}}</p>
+                  <p>Источник: {{gedcom.source}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+</html>

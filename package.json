@@ -10,5 +10,10 @@
   "testling": {
     "files": "test/*.js",
     "browsers": [ "ie9", "ff/26", "chrome/20","chrome/30", "chrome/33" ]
+  },
+  "scripts": {
+    "test": "node test/*.js",
+    "build-test": "mkdir -p build; browserify -t brfs test/*.js > build/tests.js",
+    "build": "browserify --standalone GedcomTree gedcom-tree.js > build/gedcom-tree.js"
   }
 }
