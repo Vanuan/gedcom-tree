@@ -30,6 +30,8 @@
           </div>
           <div class="mastfoot">
             <div class="inner">
+                  <input type="file" ng-model-instant onchange="angular.element(this).scope().setFiles(this)" />
+
                   <p>Файл: {{gedcom.filename}}</p>
                   <p>Версия: {{gedcom.version}}</p>
                   <p>Источник: {{gedcom.source}}</p>

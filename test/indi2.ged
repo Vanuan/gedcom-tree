@@ -1,0 +1,31 @@
+0 HEAD
+1 GEDC
+2 VERS 5.5
+2 FORM LINEAGE-LINKED
+1 CHAR ANSI
+1 LANG Russian
+1 SOUR FAMILYSPACE
+2 NAME FamilySpace - территория родственников
+2 VERS v.0.4.1d
+2 CORP FamilySpace.ru
+
+
+0 @I1@ INDI
+1 NAME Jane /Smith/
+2 GIVN Jane
+2 SURN Smith
+2 _MARN Johnson
+1 SEX F
+1 BIRTH
+2 DATE 2 January 1903
+2 PLAC
+1 FAMC @F1@
+
+
+0 @I2@ INDI
+1 NAME John /Smith/
+2 GIVN John
+2 SURN Smith
+1 SEX M
+1 FAMS @F1@
+

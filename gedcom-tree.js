@@ -38,19 +38,32 @@ var GedcomTree = {
   },
   parseHierarchy: function (blob, doneCb) {
     var gedcom = {},
-        reg = new RegExp("(^[0-2]) ([A-Z]{4}) ?(.*)"),
-        key, value, prevIndent = 0, curNode = gedcom, prevNode, curPar = [];
+        reg = new RegExp("(^[0-2]) (?:(@[A-Z0-9]*@) )?(_?[A-Z]{3,5}) ?(.*)"),
+        key, value, indent = 0, prevIndent = 0, curNode = gedcom, prevNode, curPar = [];
     this.iterateLines(blob, function(line) {
+      if (line.length == 0) return; // skip empty
+      //console.log("paren" + curPar.length + " " + JSON.stringify(curPar));
+      //console.log("indent" + indent);
+      //console.log("cur" + JSON.stringify(curNode));
+      //console.log(line)
       match = reg.exec(line)
+      if(match == undefined) {
+        throw "can't parse line" + line;
+      }
       indent = match[1];
-      key = match[2];
-      value = match[3];
+      if (match[2] != undefined) {
+        key = match[3] + match[2];
+      } else {
+        key = match[3];
+      }
+      value = match[4];
       if (indent > prevIndent) {
-        curNode = prevNode;
         curPar.push(curNode);
+        curNode = prevNode;
+        //console.log(">")
       } else if (indent < prevIndent) {
-        curPar.pop();
         curNode = curPar.pop();
+        //console.log("<")
       }
       prevNode = {value: value};
       curNode[key] = prevNode;
@@ -67,11 +80,12 @@ var GedcomTree = {
         CR = '\r'.charCodeAt(0),
         LF = '\n'.charCodeAt(0);
     for (var i = 0; i < arrayBuffer.byteLength; ++i) {
+      //console.log(view[i])
       if (view[i] == LF || view[i] == CR) {
         curLine = String.fromCharCode.apply(null, view.subarray(lineOffset, i));
         onLineCallback(curLine);
-        if (view[i + 1] == LF || view[i + 1] == CR) {
-          i += 2;
+        if (view[i] == CR && view[i + 1] == LF) {
+          i += 1;
         }
         lineOffset = i + 1;
       }
