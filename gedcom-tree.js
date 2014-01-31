@@ -38,7 +38,7 @@ var GedcomTree = {
   },
   parseHierarchy: function (blob, doneCb) {
     var gedcom = {},
-        reg = new RegExp("(^[0-2]) (?:(@[A-Z0-9]*@) )?(_?[A-Z]{3,5}) ?(.*)"),
+        reg = new RegExp("(^[0-9]) (?:(@[_A-Z0-9]*@) )?(_?[A-Z]{3,5}) ?(.*)"),
         key, value, indent = 0, prevIndent = 0, curNode = gedcom, prevNode, curPar = [];
     this.iterateLines(blob, function(line) {
       if (line.length == 0) return; // skip empty
@@ -46,9 +46,9 @@ var GedcomTree = {
       //console.log("indent" + indent);
       //console.log("cur" + JSON.stringify(curNode));
       //console.log(line)
-      match = reg.exec(line)
+      match = reg.exec(line);
       if(match == undefined) {
-        throw "can't parse line" + line;
+        throw "can't parse line " + line;
       }
       indent = match[1];
       if (match[2] != undefined) {
@@ -62,7 +62,9 @@ var GedcomTree = {
         curNode = prevNode;
         //console.log(">")
       } else if (indent < prevIndent) {
-        curNode = curPar.pop();
+        for (var i = 0; i < prevIndent - indent; ++i) {
+          curNode = curPar.pop();
+        }
         //console.log("<")
       }
       prevNode = {value: value};
