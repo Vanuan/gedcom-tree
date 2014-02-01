@@ -8,7 +8,7 @@ in JavaScript.
 Current status
 --------------
 
-[![browser support](https://ci.testling.com/USER/PROJECT.png)](https://ci.testling.com/USER/PROJECT)
+[![browser support](https://ci.testling.com/Vanuan/gedcom-tree.png)](https://ci.testling.com/Vanuan/gedcom-tree)
 
 Parses gedcom data from ArrayBuffer into JSON structure.
 
