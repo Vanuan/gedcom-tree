@@ -5,6 +5,12 @@ This is meant to be a library (or tool) that
 implements [GEDCOM 5.5](http://homepages.rootsweb.ancestry.com/~pmcbride/gedcom/55gctoc.htm) parsing
 in JavaScript.
 
+Current status
+--------------
+
+[![browser support](https://ci.testling.com/USER/PROJECT.png)](https://ci.testling.com/USER/PROJECT)
+
+Parses gedcom data from ArrayBuffer into JSON structure.
 
 Current short term goals
 ------------------------

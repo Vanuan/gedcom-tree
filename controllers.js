@@ -1,17 +1,17 @@
 var gedcomTreeApp = angular.module('gedcomTreeApp', []);
  
 gedcomTreeApp.controller('GedcomTreeCtrl', function ($scope, $http) {
-  var filename = 'test/head.ged',
-      parseGedcom = function(data) {
+  var filename = 'test/head.ged';
+  function parseGedcom(filename, data, scope) {
     GedcomTree.parse(data, function(parsed) {
-      $scope.gedcom.filename = filename;
-      $scope.gedcom.version = parsed.HEAD.GEDC.VERS.value;
-      $scope.gedcom.source = parsed.HEAD.SOUR.NAME.value;
+      scope.gedcom.filename = filename;
+      scope.gedcom.version = parsed.HEAD.GEDC.VERS.value;
+      scope.gedcom.source = parsed.HEAD.SOUR.NAME.value;
     });
-  };
+  }
 
   $http.get(filename, {responseType: "arraybuffer"}).success(function(data) {
-    parseGedcom(data);
+    parseGedcom(filename, data, $scope);
   });
 
   $scope.gedcom = {
@@ -24,7 +24,9 @@ gedcomTreeApp.controller('GedcomTreeCtrl', function ($scope, $http) {
         $scope.file = element.files[0];
         console.log('files:', $scope.file);
         reader.onload = function() {
-          parseGedcom(reader.result);
+          $scope.$apply(function(scope) {
+            parseGedcom($scope.file.name, reader.result, scope);
+          });
         };
         reader.readAsArrayBuffer($scope.file);
       }
